@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Palabras tipo Taboo</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: #ffffff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    #timer {
+      position: absolute;
+      top: 20px;
+      font-size: 3vw;
+    }
+
+    #word {
+      font-size: 10vw;
+      text-align: center;
+      word-break: break-word;
+    }
+  </style>
+</head>
+<body>
+
+<div id="timer">30</div>
+<div id="word"></div>
+
+<script>
+  const words = [
+    "ELEFANTE",
+    "COMPUTADORA",
+    "VOLCÁN",
+    "BICICLETA",
+    "GALAXIA",
+    "PINGÜINO",
+    "TECLADO",
+    "AVIÓN",
+    "CASCADA",
+    "ROBOT"
+  ];
+
+  let index = 0;
+  let timeLeft = 30;
+  let interval;
+
+  const wordDiv = document.getElementById("word");
+  const timerDiv = document.getElementById("timer");
+
+  function showWord() {
+    wordDiv.textContent = words[index];
+    resetTimer();
+  }
+
+  function resetTimer() {
+    clearInterval(interval);
+    timeLeft = 30;
+    timerDiv.textContent = timeLeft;
+
+    interval = setInterval(() => {
+      timeLeft--;
+      timerDiv.textContent = timeLeft;
+
+      if (timeLeft <= 0) {
+        clearInterval(interval);
+      }
+    }, 1000);
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+      index = (index + 1) % words.length;
+      showWord();
+    } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+      index = (index - 1 + words.length) % words.length;
+      showWord();
+    }
+  });
+
+  showWord();
+</script>
+
+</body>
+</html>
