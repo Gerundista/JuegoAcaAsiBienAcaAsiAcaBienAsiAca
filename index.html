@@ -2,38 +2,75 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Palabras tipo Taboo</title>
+  <title>Taboo Digital</title>
   <style>
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
       width: 100%;
-      background: #ffffff;
+      background: #0a0a0a;
+      color: #00ff9c;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-family: Arial, sans-serif;
+      font-family: "Courier New", monospace;
+    }
+
+    /* Marco tipo monitor antiguo */
+    .frame {
+      border: 4px solid #00ff9c;
+      border-radius: 12px;
+      padding: 40px;
+      width: 90vw;
+      height: 80vh;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      box-shadow: 0 0 20px #00ff9c33;
     }
 
     #timer {
       position: absolute;
-      top: 20px;
-      font-size: 3vw;
+      top: 15px;
+      right: 25px;
+      font-size: 2vw;
+      opacity: 0.8;
     }
 
     #word {
       font-size: 10vw;
       text-align: center;
-      word-break: break-word;
+      letter-spacing: 0.1em;
+    }
+
+    /* Línea tipo escaneo */
+    .scanline {
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background: rgba(0,255,156,0.2);
+      top: 0;
+      animation: scan 4s linear infinite;
+    }
+
+    @keyframes scan {
+      0% { top: 0; }
+      100% { top: 100%; }
     }
   </style>
 </head>
 <body>
 
-<div id="timer">30</div>
-<div id="word"></div>
+<div class="frame">
+  <div class="scanline"></div>
+  <div id="timer">30</div>
+  <div id="word"></div>
+</div>
 
 <script>
   const words = [
@@ -89,5 +126,7 @@
   showWord();
 </script>
 
+</body>
+</html>
 </body>
 </html>
